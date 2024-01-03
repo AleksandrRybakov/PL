@@ -1,0 +1,39 @@
+
+RewriteOptions inherit
+
+#RewriteOptions inherit
+RewriteEngine On
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond ${REQUEST_URI} ^.+$
+RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|swf|php|ico|txt|pdf|xml)$ [OR]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^ - [L]
+
+#blog
+RewriteRule ^blog?$ blog.php
+RewriteRule ^category/([^/\.]+)?$ blog-cat.php?cat=$1 [L,QSA]
+RewriteRule ^post/([^/]+) blog-post.php?blog=$1 [L,QSA]
+
+ErrorDocument 404 /404ErrorPage.html
+RewriteCond %{HTTP_HOST} ^prolifehc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.prolifehc\.com$
+RewriteRule ^Important\-CDPAP\-Announcement$ "https\:\/\/prolifehc\.com\/post\/Important\-CDPAP\-Announcement" [R=301,L]
+RewriteCond %{HTTP_HOST} ^prolifehc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.prolifehc\.com$
+RewriteRule ^ProLife\-Home\-Cares\-In\-Home\-Health\-Care\-Services$ "https\:\/\/prolifehc\.com\/post\/ProLife\-Home\-Cares\-In\-Home\-Health\-Care\-Services" [R=301,L]
+RewriteCond %{HTTP_HOST} ^prolifehc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.prolifehc\.com$
+RewriteRule ^ProLife\-CDPAP\-Program\-For\-New\-York\-amp\-Long\-Island$ "https\:\/\/prolifehc\.com\/post\/ProLife\-CDPAP\-Program\-For\-New\-York\-amp\-Long\-Island" [R=301,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^index\.php$ "https\:\/\/prolifehc\.com\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^prolifehc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.prolifehc\.com$
+RewriteRule ^cdpap\.php$ "https\:\/\/prolifehc\.com\/CDPAP\.php" [R=301,L]
+RewriteCond %{HTTP_HOST} ^prolifehc\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.prolifehc\.com$
+RewriteRule ^licensed\-home\-services\.php$ "https\:\/\/prolifehc\.com\/" [R=301,L]
+
